@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -113,7 +108,12 @@ def wrangle_zillow(k):
 
 
 # In[ ]:
-
+def scale(scaler,zillow_train,cols=['bedroom','bathroom','sqtft','lots'],return_scaler=True):
+    zillow_train=zillow_train
+    zillow_train_scaled=zillow_train.copy()
+    scaler=scaler
+    zillow_train_scaled[cols] = scaler.fit_transform(zillow_train[cols])
+    return scaler, zillow_train_scaled
 
 
 
