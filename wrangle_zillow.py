@@ -33,7 +33,7 @@ def acquire_zillow():
     if os.path.isfile(file):
         return pd.read_csv(file)
     else:
-        zillow2017_df = pd.read_sql(('SELECT lotsizesquarefeet,logerror,longitude,latitude,transactiondate,bathroomcnt,bedroomcnt,fips,calculatedfinishedsquarefeet,regionidzip,taxvaluedollarcnt FROM properties_2017 JOIN propertylandusetype USING (propertylandusetypeid) JOIN predictions_2017 USING (id) WHERE propertylandusedesc = "Single Family Residential" and predictions_2017.transactiondate like "2017%%"'), get_connection('zillow'))
+        zillow2017_df = pd.read_sql(('SELECT yearbuilt,lotsizesquarefeet,logerror,longitude,latitude,transactiondate,bathroomcnt,bedroomcnt,fips,calculatedfinishedsquarefeet,regionidzip,taxvaluedollarcnt FROM properties_2017 JOIN propertylandusetype USING (propertylandusetypeid) JOIN predictions_2017 USING (id) WHERE propertylandusedesc = "Single Family Residential" and predictions_2017.transactiondate like "2017%%"'), get_connection('zillow'))
         zillow2017_df.to_csv(file,index=False)
     return zillow2017_df
 
